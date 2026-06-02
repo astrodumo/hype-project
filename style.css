@@ -42,6 +42,14 @@ body {
   pointer-events: none;
 }
 
+@media (max-width: 600px) {
+  .bg-pfp {
+    background-size: 220px;
+    background-position: right 10px bottom 120px;
+    opacity: 0.4;
+  }
+}
+
 /* make sure all your real content sits above the background */
 .nav, .hero, .dashboard,
 .loading-state, .error-state, .footer {
