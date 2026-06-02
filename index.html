@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyper PnL Tracker</title>
+<link rel="icon" type="image/png" sizes="32x32" href="./images/Icon.png">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pfp" id="bg-pfp"></div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <span class="nav-logo mono">HL//TRACKER</span>
+    <div class="nav-right">
+      <span class="nav-tag mono">LIVE</span>
+      <a class="nav-link" href="https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api" target="_blank">DOCS</a>
+      <a class="nav-link" href="https://app.hyperliquid.xyz" target="_blank">APP</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO / SEARCH ── -->
+  <div class="hero" id="heroSection">
+    <div class="section-tag mono">//portfolio</div>
+    <h1 class="hero-title mono">Track any wallet<br>on <em>Hyperliquid.</em></h1>
+    <p class="hero-sub mono">Perps · Spot · PnL · History: all onchain, no auth.</p>
+
+    <div class="search-row">
+      <input
+        class="search-input mono"
+        id="addressInput"
+        placeholder="0x... enter any Hyperliquid wallet address"
+        maxlength="42"
+      />
+      <button class="search-btn mono" id="searchBtn">FETCH →</button>
+    </div>
+
+    <div class="example-addresses">
+      <span class="ex-label mono">try example:</span>
+      <span class="ex-addr mono" data-address="0xd47587702a91731dc1089b5db0932cf820151a91">0x563C…B45e</span>
+      <span class="ex-addr mono" data-address="0xa5b0edf6b55128e0ddae8e51ac538c3188401d41">0xDcB0…2a8f</span>
+    </div>
+  </div>
+
+  <!-- ── LOADING STATE ── -->
+  <div class="loading-state" id="loadingState">
+    <div class="section-tag mono">//fetching onchain data</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-track">
+        <div class="loading-bar-fill" id="loadBar"></div>
+      </div>
+    </div>
+    <div class="loading-steps" id="loadSteps"></div>
+  </div>
+
+  <!-- ── ERROR STATE ── -->
+  <div class="error-state" id="errorState">
+    <div class="error-code mono">// ERROR</div>
+    <p class="error-msg mono" id="errorMsg">Could not fetch wallet data.</p>
+    <br/>
+    <button class="back-btn mono" id="tryAgainBtn">← TRY AGAIN</button>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div class="dashboard" id="dashboard">
+
+    <div class="dash-header">
+      <div>
+        <div class="dash-addr mono" id="dashAddr">—</div>
+        <div class="dash-updated mono" id="dashUpdated">—</div>
+      </div>
+      <button class="back-btn mono" id="newSearchBtn">← NEW SEARCH</button>
+    </div>
+
+    <!-- Summary stat cards -->
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <!-- Profit vs Loss bar -->
+    <div class="pnl-bar-wrap" id="pnlBarWrap">
+      <div class="pnl-bar-label mono">UNREALIZED PNL SPLIT — PROFIT vs LOSS</div>
+      <div class="pnl-bar-track">
+        <div class="pnl-bar-profit" id="pnlBarProfit"></div>
+        <div class="pnl-bar-loss"   id="pnlBarLoss"></div>
+      </div>
+    </div>
+
+    <!-- Open perp positions -->
+    <div class="section" id="posSection">
+      <div class="section-header">
+        <span class="section-title mono">PERP POSITIONS</span>
+        <span class="section-count mono" id="posCount">0</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="pos-table">
+          <thead>
+            <tr>
+              <th>ASSET</th>
+              <th>SIDE</th>
+              <th>SIZE</th>
+              <th>ENTRY PRICE</th>
+              <th>MARK PRICE</th>
+              <th>LIQ PRICE</th>
+              <th>MARGIN</th>
+              <th>UNREALIZED PNL</th>
+            </tr>
+          </thead>
+          <tbody id="posBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Spot token balances -->
+    <div class="section" id="spotSection">
+      <div class="section-header">
+        <span class="section-title mono">SPOT BALANCES</span>
+        <span class="section-count mono" id="spotCount">0</span>
+      </div>
+      <div class="bal-grid" id="spotGrid"></div>
+    </div>
+
+    <!-- Recent trades -->
+    <div class="section" id="histSection">
+      <div class="section-header">
+        <span class="section-title mono">RECENT TRADES</span>
+        <span class="section-count mono" id="histCount">0</span>
+      </div>
+      <div id="histList"></div>
+    </div>
+
+    <!-- Funding payments -->
+    <div class="section" id="fundSection">
+      <div class="section-header">
+        <span class="section-title mono">FUNDING PAYMENTS — LAST 7 DAYS</span>
+        <span class="section-count mono" id="fundCount">0</span>
+      </div>
+      <div id="fundList"></div>
+    </div>
+
+  </div><!-- end dashboard -->
+
+  <footer class="footer">
+    <span>HL//TRACKER — BUILT ON HYPERLIQUID PUBLIC API · READ-ONLY · NO AUTH REQUIRED</span>
+    <span>DATA: api.hyperliquid.xyz/info</span>
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

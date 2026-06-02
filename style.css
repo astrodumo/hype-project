@@ -1,0 +1,612 @@
+/* ═══════════════════════════════════════════════
+   HL//TRACKER — Styles
+   style.css
+═══════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0a0a0a;
+  color: #e8e8e2;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+.mono {
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── BACKGROUND PFP ──────────────────────────── */
+
+.bg-pfp {
+  position: fixed;        /* stays in place when you scroll */
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/pfp.jpg');
+  background-size: 450px; /* controls how big the image appears */
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.5;     
+  pointer-events: none;  
+  z-index: 0;
+}
+
+.bg-pfp.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* make sure all your real content sits above the background */
+.nav, .hero, .dashboard,
+.loading-state, .error-state, .footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.nav-logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #e8e8e2;
+}
+
+.nav-tag {
+  font-size: 10px;
+  color: #3aff8a;
+  border: 1px solid #3aff8a;
+  padding: 3px 8px;
+  letter-spacing: 0.1em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 12px;
+  color: #666;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #e8e8e2;
+}
+
+
+/* ── HERO / SEARCH ───────────────────────────── */
+
+.hero {
+  padding: 52px 28px 40px;
+  border-bottom: none;
+}
+
+* {
+  border: none !important;
+}
+
+.section-tag {
+  font-size: 10px;
+  color: #555;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  color: #e8e8e2;
+}
+
+.hero-title em {
+  color: #3aff8a;
+  font-style: normal;
+}
+
+.hero-sub {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+.search-row {
+  display: flex;
+  max-width: 640px;
+  border: 1px solid #2a2a2a;
+}
+
+.search-row:focus-within {
+  border-color: #3aff8a;
+}
+
+.search-input {
+  flex: 1;
+  background: #111;
+  border: none;
+  outline: none;
+  padding: 13px 16px;
+  font-size: 12px;
+  color: #e8e8e2;
+}
+
+.search-input::placeholder {
+  color: #333;
+}
+
+.search-btn {
+  background: #3aff8a;
+  color: #0a0a0a;
+  border: none;
+  padding: 0 22px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: #5effa0;
+}
+
+.search-btn:disabled {
+  background: #1a3a2a;
+  color: #3aff8a;
+  cursor: not-allowed;
+}
+
+.example-addresses {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ex-label {
+  font-size: 10px;
+  color: #333;
+}
+
+.ex-addr {
+  font-size: 10px;
+  color: #444;
+  border: 1px solid #1e1e1e;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ex-addr:hover {
+  border-color: #3aff8a;
+  color: #3aff8a;
+}
+
+
+/* ── LOADING STATE ───────────────────────────── */
+
+.loading-state {
+  padding: 52px 28px;
+  display: none;
+}
+
+.loading-state.visible {
+  display: block;
+}
+
+.loading-bar-wrap {
+  max-width: 320px;
+  margin-top: 20px;
+}
+
+.loading-bar-track {
+  height: 1px;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: #3aff8a;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.loading-steps {
+  margin-top: 12px;
+}
+
+.loading-step {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: #333;
+  padding: 2px 0;
+}
+
+.loading-step.done {
+  color: #3aff8a;
+}
+
+.loading-step.active {
+  color: #e8e8e2;
+}
+
+.loading-step.active::before {
+  content: '> ';
+}
+
+
+/* ── ERROR STATE ─────────────────────────────── */
+
+.error-state {
+  padding: 28px;
+  display: none;
+  margin: 28px;
+  border: 1px solid #2a1a1a;
+  background: #110a0a;
+}
+
+.error-state.visible {
+  display: block;
+}
+
+.error-code {
+  font-size: 10px;
+  color: #ff5555;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #666;
+}
+
+
+/* ── DASHBOARD ───────────────────────────────── */
+
+.dashboard {
+  padding: 28px;
+  display: none;
+}
+
+.dashboard.visible {
+  display: block;
+}
+
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dash-addr {
+  font-size: 11px;
+  color: #3aff8a;
+}
+
+.dash-updated {
+  font-size: 10px;
+  color: #333;
+  margin-top: 4px;
+}
+
+.back-btn {
+  background: transparent;
+  color: #e8e8e2;
+  border: 1px solid #2a2a2a;
+  padding: 8px 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  border-color: #3aff8a;
+  color: #3aff8a;
+}
+
+
+/* ── STATS GRID ──────────────────────────────── */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: #1e1e1e;
+  border: 1px solid #1e1e1e;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: #0f0f0f;
+  padding: 20px 18px;
+}
+
+.stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #444;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8e8e2;
+}
+
+.stat-value.green { color: #3aff8a; }
+.stat-value.red   { color: #ff5555; }
+
+
+/* ── SECTIONS ────────────────────────────────── */
+
+.section {
+  margin-bottom: 32px;
+  display: none;
+}
+
+.section.visible {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.section-count {
+  font-size: 10px;
+  color: #3aff8a;
+  border: 1px solid #1a3a2a;
+  padding: 1px 7px;
+}
+
+
+/* ── PNL BAR ─────────────────────────────────── */
+
+.pnl-bar-wrap {
+  margin-bottom: 28px;
+  display: none;
+}
+
+.pnl-bar-wrap.visible {
+  display: block;
+}
+
+.pnl-bar-label {
+  font-size: 9px;
+  color: #333;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.pnl-bar-track {
+  height: 3px;
+  background: #1a1a1a;
+  display: flex;
+  overflow: hidden;
+}
+
+.pnl-bar-profit {
+  height: 100%;
+  background: #3aff8a;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+.pnl-bar-loss {
+  height: 100%;
+  background: #ff5555;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+
+/* ── POSITIONS TABLE ─────────────────────────── */
+
+.pos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pos-table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #333;
+  letter-spacing: 0.1em;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.pos-table th:not(:first-child) {
+  text-align: right;
+}
+
+.pos-table td {
+  padding: 12px;
+  border-bottom: 1px solid #111;
+  font-size: 13px;
+}
+
+.pos-table td:not(:first-child) {
+  text-align: right;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+}
+
+.pos-table tr:hover td {
+  background: #111;
+}
+
+.pos-coin {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #e8e8e2;
+}
+
+.pos-side {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 0.08em;
+}
+
+.pos-side.long {
+  background: #0d2a18;
+  color: #3aff8a;
+  border: 1px solid #1a4a2a;
+}
+
+.pos-side.short {
+  background: #2a0d0d;
+  color: #ff5555;
+  border: 1px solid #4a1a1a;
+}
+
+
+/* ── SPOT BALANCES ───────────────────────────── */
+
+.bal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1px;
+  background: #1a1a1a;
+  border: 1px solid #1a1a1a;
+}
+
+.bal-card {
+  background: #0f0f0f;
+  padding: 16px;
+}
+
+.bal-token {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e8e8e2;
+  margin-bottom: 4px;
+}
+
+.bal-amount {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: #666;
+}
+
+.bal-usd {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #3aff8a;
+  margin-top: 6px;
+}
+
+
+/* ── HISTORY ROWS ────────────────────────────── */
+
+.hist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #111;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hist-coin {
+  font-weight: 700;
+  color: #e8e8e2;
+  min-width: 60px;
+}
+
+.hist-type {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+}
+
+.hist-type.buy     { background: #0d2a18; color: #3aff8a; }
+.hist-type.sell    { background: #2a0d0d; color: #ff5555; }
+.hist-type.funding { background: #111;    color: #555; border: 1px solid #222; }
+
+.hist-price { color: #666; }
+.hist-time  { color: #333; font-size: 10px; }
+
+
+/* ── COLOUR UTILITIES ────────────────────────── */
+
+.text-green { color: #3aff8a; }
+.text-red   { color: #ff5555; }
+.text-muted { color: #444; }
+
+
+/* ── FOOTER ──────────────────────────────────── */
+
+.footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer span {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #222;
+  letter-spacing: 0.08em;
+}
+
+
+/* ── RESPONSIVE ──────────────────────────────── */
+
+@media (max-width: 500px) {
+  .hero,
+  .dashboard { padding: 24px 16px; }
+  .nav        { padding: 14px 16px; }
+}
