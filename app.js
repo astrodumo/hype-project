@@ -168,22 +168,7 @@ function tryExample(address) {
   lookupWallet();
 }
 
-/**
- * lookupWallet
- * ------------
- * Main function — runs when the user clicks FETCH.
- * Makes 5 API calls to build the full dashboard.
- *
- * API calls made (in order):
- *
- *  1. clearinghouseState       → perp positions, margin, account value
- *  2. spotClearinghouseState   → spot token balances
- *  3. allMids                  → live mid prices for all assets
- *  4. userFills                → trade history (all fills)
- *  5. userFunding              → funding payments (last 7 days)
- *
- * Calls 1, 2, 3 fire simultaneously with Promise.all to save time.
- */
+
 async function lookupWallet() {
   const raw = document.getElementById('addressInput').value.trim();
   if (!raw || raw.length < 10) return;
